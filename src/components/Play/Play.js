@@ -1,10 +1,16 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import Board from "../Board/Board";
 
 const Play = () => {
+    const [Play, setPlay] = useState(
+        <div
+            className={"link dim pa5 br4 ma5 self-center shadow-1 f1 grow "}
+            onClick={() => setPlay(<Board difficulty={9}/>)}>
+            Start Game !
+        </div>)
     return (
-        <div id={"Play"} className={"flex justify-center ma5 f1 grow"}>
-            <a href={"/"} className={"link dim"}>Start Game !</a>
+        <div id={"Play"} className={"flex justify-center "}>
+            {Play}
         </div>
     );
 }
