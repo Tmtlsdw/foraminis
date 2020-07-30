@@ -6,9 +6,7 @@ import "./Logo.css";
 const Logo = () => {
     return (
         <div id={"Logo"} className={"grow"}>
-            <a href={"/"}>
                 <img src={Png} className={"w-100"} alt={"Logo"}/>
-            </a>
         </div>
     );
 }

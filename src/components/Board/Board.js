@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import "./Board.css";
 
 const makeTile = (count) => {
@@ -17,18 +17,19 @@ const makeBoard = (thickness) => {
         }
         board[i] = <div key={i} className={"flex justify-center"}>{tiles}</div>;
     }
+    console.log(board[0].props.children[0]);
     return board;
 }
-const Board = (props) => {
-    const {difficulty} = props;
-    const [TilesBoard, setTilesBoard] = useState(() => makeBoard(difficulty));
+const Board = ({difficulty}) => {
+const board = makeBoard(difficulty);
 
     return (
         <div id={"Board"} className={"w-100"}>
-            {TilesBoard}
+            {board}
         </div>
-    );
-}
+
+    )
+};
 
 export default Board;
 
