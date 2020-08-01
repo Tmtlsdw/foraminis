@@ -1,24 +1,23 @@
-import React from 'react';
-import {render} from 'react-dom';
-import './index.css';
+import React from "react";
+import {render} from "react-dom";
+import "./index.css";
 import "tachyons";
-import Foraminis from './containers/Foraminis';
-import * as serviceWorker from './serviceWorker';
-import {Provider} from "react-redux";
-import {combineReducers, createStore} from "redux";
+import Foraminis from "./containers/Foraminis";
+import * as serviceWorker from "./serviceWorker";
+import {RecoilRoot} from "recoil/dist";
 
-const foraminis = combineReducers({})
-const store = createStore(foraminis);
-const rootElement = document.getElementById('root');
+
+
+const rootElement = document.getElementById("root");
 
 render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <Foraminis/>
-        </Provider>
-    </React.StrictMode>
-    ,
-    rootElement
+	<React.StrictMode>
+		<RecoilRoot>
+			<Foraminis/>
+		</RecoilRoot>
+	</React.StrictMode>
+	,
+	rootElement
 );
 
 // If you want your app to work offline and load faster, you can change

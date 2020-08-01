@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const Foe = () => {
+const Foe = (n) => {
     return (
-        <div id={"Foe"}>
+        <div key={n} id={n} className={"foe"}>
             Foe
         </div>
     );
