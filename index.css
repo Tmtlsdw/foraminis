@@ -3,8 +3,9 @@
     src: url("./Orbitron/Orbitron-Regular.ttf")
 }
 
+/* Page */
 body {
-    background: radial-gradient(circle at center bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .7), rgba(0, 0, 0, .5));
+    background: radial-gradient(circle at center bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .7), rgba(0, 0, 0, .5)) no-repeat;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -16,10 +17,65 @@ body {
     width: 100vw;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar, #app::-webkit-scrollbar {
     display: none;
 }
 
+/* Header */
+header {
+    display: flex;
+    width: 100vw;
+    place-content: center center;
+}
+
+header > div {
+    width: calc(100vw / 3);
+}
+
+/* Color */
+#colors {
+    display: flex;
+    place-items: center flex-start;
+}
+
+#colors > div {
+    padding: 5px;
+}
+
+/* Logo */
+#logo {
+    text-align: center;
+}
+
+#logo > img {
+    height: auto;
+    width: 100px;
+}
+
+/* Menu */
+#menu {
+    display: flex;
+    place-items: center flex-end;
+    place-content: center flex-end;
+}
+#menu>a{
+    padding: 5px;
+}
+
+/* App */
+#app {
+    overflow: auto;
+}
+/* Pawns */
+[foe=true] {
+    background-image: url("./img/foe.png");
+}
+
+[player=true] {
+    background-image: url("./img/player.png");
+}
+
+/* Board */
 #game {
     display: flex;
     flex-direction: column;
@@ -34,14 +90,6 @@ body::-webkit-scrollbar {
     flex-direction: column-reverse;
 }
 
-.even {
-    background-color: rgba(10, 245, 160, .8);
-}
-
-.odd {
-    background-color: rgba(245, 10, 160, .9);
-}
-
 .tiles {
     width: 40px;
     height: 40px;
@@ -52,13 +100,7 @@ body::-webkit-scrollbar {
     text-align: center;
 }
 
-[foe=true] {
-    background-image: url("./img/foe.png");
-}
 
-[player=true] {
-    background-image: url("./img/player.png");
-}
 
 [player=true], [foe=true] {
     background-size: 90%;
@@ -117,19 +159,8 @@ button {
     color: black;
 }
 
-#colors {
-    display: flex;
-    justify-content: center;
-}
-
-#colors div {
-    padding: 5px;
-}
 
 input, button {
     cursor: pointer;
 }
-div img{
-    height:auto;
-    width: 100px;
-}
+
