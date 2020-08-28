@@ -1,8 +1,9 @@
-import {setPlayer, thickness, unsetPlayer} from "./constants.mjs";
 import {dataChange} from "./dataChange.mjs";
 import {encounterFoe} from "./encounterFoe.mjs";
 import {playerChasing} from "./playerChasing.mjs";
 import {gameDone} from "./gameDone.mjs";
+import {setPlayer, unsetPlayer} from "./constants/functions.mjs";
+import {thickness} from "./constants/constants.mjs";
 
 export const movement = (e) => {
 	const player = document.querySelector("[player='true']");
