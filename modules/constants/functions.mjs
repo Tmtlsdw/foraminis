@@ -1,12 +1,14 @@
-export const setPawn = (tile, isHere = true, kind = "foe") => {
+
+export const setPawn = (tile, isHere, kind) => {
 	tile.setAttribute(kind, String(isHere));
-	if (!isHere) return;
-	drawPawn(tile, kind);
+	isHere ?
+		drawPawn(tile, kind):
+		erasePawn(tile, kind);
 
 };
-export const setFoes = (tiles, isHere = true) => {
+export const setFoes = (tiles) => {
 	tiles.forEach(tile => {
-		setPawn(tile, isHere);
+		setPawn(tile, true, "foe");
 	});
 };
 export const drawPawn = (tile, kind) => {
@@ -14,16 +16,10 @@ export const drawPawn = (tile, kind) => {
 	pawn.setAttribute("class", kind);
 	tile.append(pawn);
 };
-export const erasePawn = (isAlone = true, isFoe = true) => {
-if (!isFoe) {
-	document.querySelector(".player").remove();
-	return;
-}
-if(!isAlone){
-	document.querySelectorAll(".foe").forEach( pawn => pawn.remove());
-return;
-}
-document.querySelector("[player='true'][foe='true']>.foe").remove()
+export const erasePawn = (tile, kind) => {
+	let x = String(tile.getAttribute("x"));
+	let y = String(tile.getAttribute("y"));
+	document.querySelector(`[x='${x}'][y='${y}']>.${kind}`).remove();
 };
 export const ladderRegistration = (e) => {
 	if (e.key === "Enter") {
@@ -64,19 +60,14 @@ export const chase = (entity, xTarget, yTarget, way) => {
 			break;
 	}
 	if ((document.querySelector(`[x='${xTarget}'][y='${yTarget}'][foe='false']`))) {
-		setPawn(document.querySelector(`[x='${xTarget}'][y='${yTarget}']`));
-		drawPawn(document.querySelector(`[x='${xTarget}'][y='${yTarget}']`), "foe")
-		setPawn(entity, false);
-		erasePawn();
-
+		setPawn(document.querySelector(`[x='${xTarget}'][y='${yTarget}']`), true, "foe");
+		setPawn(entity, false, "foe");
 	}
 };
 export const tilesColor = (value, isEven) => {
 	let q = isEven ? ".even" : ".odd";
 	document.querySelectorAll(q).forEach(tile => tile.style.backgroundColor = value);
 };
-export const pawnsColor = (value, isFoe = true) => {
-	isFoe ?
-		document.querySelectorAll(".foe").forEach(foe => foe.style.backgroundColor = value) :
-		document.querySelector(".player").style.backgroundColor = value;
+export const pawnsColor = (value, kind) => {
+		document.querySelectorAll(`.${kind}`).forEach(pawn => pawn.style.backgroundColor = value);
 };

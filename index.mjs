@@ -32,5 +32,5 @@ dom.play.onclick = () => start(true);
 dom.logo.onclick = () => start(false);
 dom.evenColor.onchange = () => tilesColor(dom.evenColor.value, true);
 dom.oddColor.onchange = () => tilesColor(dom.oddColor.value, false);
-dom.foesColor.onchange = () => pawnsColor(dom.foesColor.value);
-dom.playerColor.onchange = () => pawnsColor(dom.playerColor.value, false);
+dom.foesColor.onchange = () => pawnsColor(dom.foesColor.value, "foe");
+dom.playerColor.onchange = () => pawnsColor(dom.playerColor.value, "player");

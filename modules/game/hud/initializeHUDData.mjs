@@ -1,7 +1,11 @@
-import {data} from "../../constants/constants.mjs";
-export const initializeHUDDisplay = () => {
-	let movesText = data.move !== 1 ? `Moves : ${data.move}`: `Move : ${data.move}`;
-	document.getElementById("moves").innerText = movesText;
+import {alive, data, erased, move, spawn, wave} from "../../constants/constants.mjs";
+
+export const initializeHUDData = () => {
+	data.move = move;
+	data.erased = erased;
+	data.wave = wave;
+	data.alive = spawn;
+	document.getElementById("moves").innerText = `Moves : ${data.move}`;
 	document.getElementById("alive").innerText = `Alive : ${data.alive}`;
 	document.getElementById("wave").innerText = `Wave : ${data.wave}`;
 	document.getElementById("erased").innerText = `Erased : ${data.erased}`;

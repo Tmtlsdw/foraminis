@@ -1,16 +1,16 @@
-import {setFoes} from "./constants/functions.mjs";
-import {move} from "./constants/constants.mjs";
+import {setFoes} from "../../constants/functions.mjs";
+import {spawn} from "../../constants/constants.mjs";
 
-export const spawnFoe = () => {
+export const spawnFoes = () => {
 	let foes = document.querySelectorAll("[player='false'][foe='false']");
 	let tiles = [];
 	let i = 0;
-	while (i < move / 2) {
+	while (i < spawn) {
 		let foe = Math.floor(Math.random() * (foes.length));
+		if (!tiles.includes(foes[foe])) {
 			tiles.push(foes[foe]);
-			foes.splice(foe, 1);
 			++i;
+		}
 	}
 	setFoes(tiles);
-	return tiles.length;
 };

@@ -1,44 +1,7 @@
-import {setFoe, unsetFoe} from "./constants.mjs";
 import {playerEncountered} from "./playerEncountered.mjs";
-
-
-export const chase = (entity, xTarget, yTarget, way) => {
-	switch (way) {
-		case "ne":
-			xTarget++;
-			yTarget++;
-			break;
-		case "se":
-			xTarget--;
-			yTarget++;
-			break;
-		case "sw":
-			xTarget--;
-			yTarget--;
-			break;
-		case "nw":
-			xTarget++;
-			yTarget--;
-			break;
-		case "n":
-			xTarget++;
-			break;
-		case "e":
-			yTarget++;
-			break;
-		case "s":
-			xTarget--;
-			break;
-		case "w":
-			yTarget--;
-			break;
-	}
-	if (setFoe(document.querySelector(`[x='${xTarget}'][y='${yTarget}']`))) unsetFoe(entity);
-};
-
-export const playerChasing = (reverse) => {
+import {chase} from "./constants/functions.mjs";
+export const playerChasing = () => {
 	let foes = document.querySelectorAll("[foe='true']");
-	if (reverse) Array.prototype.reverse.bind(foes);
 	let player = document.querySelector("[player='true']");
 	let xp = Number(player.getAttribute("x"));
 	let yp = Number(player.getAttribute("y"));
@@ -90,5 +53,5 @@ export const playerChasing = (reverse) => {
 		}
 		chase(foe, xf, yf, way);
 	});
-return !!playerEncountered();
+	return !!playerEncountered();
 };

@@ -1,16 +1,21 @@
-import {movesDiv, aliveDiv, currentData, waveDiv, move} from "./constants.mjs";
-import {spawnFoe} from "./spawnFoe.mjs";
+import {spawnFoes} from "./gameplay/foes/spawnFoes.mjs";
+import {data, move, spawn} from "./constants/constants.mjs";
+import {pawnsColor} from "./constants/functions.mjs";
+import {foesColor, playerColor} from "./constants/dom.mjs";
+
 export const dataChange = () => {
-	if (currentData.move === 1 || currentData.alive === 0) {
-		currentData.wave += 1;
-		currentData.move = move;
-		spawnFoe();
-		aliveDiv.innerText = `Alive : ${currentData.alive}`;
-		waveDiv.innerText = `Wave : ${currentData.wave}`;
+	if (data.move === 1 || data.alive === 0) {
+		data.wave += 1;
+		data.move = move;
+		spawnFoes();
+		data.alive += spawn;
+		document.getElementById("alive").innerText = `Alive : ${data.alive}`;
+		document.getElementById("wave").innerText = `Wave : ${data.wave}`;
 	} else {
-		currentData.move -= 1;
+		data.move -= 1;
 	}
-	currentData.move <= 1 ?
-		movesDiv.innerText = `Move left : ${currentData.move}` :
-		movesDiv.innerText = `Moves lefts : ${currentData.move}`;
+	pawnsColor(playerColor.value, "player")
+	pawnsColor(foesColor.value, "foe")
+	let text = data.move !== 1 ? `Moves : ${data.move}` : `Move : ${data.move}`;
+	document.getElementById("moves").innerText = text;
 };
