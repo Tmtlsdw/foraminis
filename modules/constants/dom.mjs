@@ -1,0 +1,12 @@
+export const evenColor = document.getElementById("even");
+export const oddColor = document.getElementById("odd");
+export const foesColor = document.getElementById("foes");
+export const playerColor = document.getElementById("player");
+export const register = document.getElementById("register");
+export const signIn = document.getElementById("signIn");
+export const app = document.getElementById("app");
+export const play = document.getElementById("play");
+export const logo = document.getElementById("logo");
+export const ladder = document.getElementById("ladder");
+export const description = document.getElementById("description");
+export const colorDivs = document.querySelectorAll("#colors>div");
