@@ -1,73 +1,72 @@
+import {logo, tbody} from "./dom.mjs";
+import {data, user} from "./constants.mjs";
+import {start} from "../../index.mjs";
 
-export const setPawn = (tile, isHere, kind) => {
-	tile.setAttribute(kind, String(isHere));
-	isHere ?
-		drawPawn(tile, kind):
-		erasePawn(tile, kind);
+export const ladderRegistration = () => {
+	user.name = document.getElementById("nameGameOver").value;
+	user.password = document.getElementById("passwordGameOver").value;
+	user.email = document.getElementById("emailGameOver").value;
+	user.erased = data.erased;
+	user.wave = data.wave;
+	console.log(JSON.stringify(user));
+	fetch("http://localhost:3000/register", {
+		method: "post",
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify(user)
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data) {
+				const {wave, erased, email, name, id} = data;
+				console.log("alright");
+				user.name = name;
+				user.email = email;
+				user.erased = erased;
+				user.wave = wave,
+					user.id = id;
+				start(false);
+			}
+		});
+};
+export const fetchLadder = () => {
+	fetch("http://localhost:3000/")
+		.then(response => response.json())
+		.then(initializeLadder);
+};
+export const initializeLadder = (ladder) => {
+	if (ladder.length < 1) return;
+	tbody.innerHTML= "";
+	console.log(ladder)
 
-};
-export const setFoes = (tiles) => {
-	tiles.forEach(tile => {
-		setPawn(tile, true, "foe");
-	});
-};
-export const drawPawn = (tile, kind) => {
-	const pawn = document.createElement("div");
-	pawn.setAttribute("class", kind);
-	tile.append(pawn);
-};
-export const erasePawn = (tile, kind) => {
-	let x = String(tile.getAttribute("x"));
-	let y = String(tile.getAttribute("y"));
-	document.querySelector(`[x='${x}'][y='${y}']>.${kind}`).remove();
-};
-export const ladderRegistration = (e) => {
-	if (e.key === "Enter") {
-		console.log("OH YEAH");
-	}
-	;
+	const rank = (i) => {
+		switch (i) {
+			case 0:
+				return "1st";
+			case 1:
+				return "2nd";
+			case 2:
+				return "3rd";
+			default:
+				return `${i + 1}th`;
+		}
+	};
+	for (let i = 0; i < ladder.length; i++) {
 
-};
-export const chase = (entity, xTarget, yTarget, way) => {
-	switch (way) {
-		case "ne":
-			xTarget++;
-			yTarget++;
-			break;
-		case "se":
-			xTarget--;
-			yTarget++;
-			break;
-		case "sw":
-			xTarget--;
-			yTarget--;
-			break;
-		case "nw":
-			xTarget++;
-			yTarget--;
-			break;
-		case "n":
-			xTarget++;
-			break;
-		case "e":
-			yTarget++;
-			break;
-		case "s":
-			xTarget--;
-			break;
-		case "w":
-			yTarget--;
-			break;
+		const tr = document.createElement("tr");
+		const rankTD = document.createElement("td");
+		const nameTD = document.createElement("td");
+		const erasedTD = document.createElement("td");
+		const waveTD = document.createElement("td");
+
+		rankTD.innerText = rank(i);
+		nameTD.innerText = ladder[i].name;
+		erasedTD.innerText = ladder[i].erased;
+		waveTD.innerText = ladder[i].wave;
+
+		tr.append(rankTD);
+		tr.append(nameTD);
+		tr.append(erasedTD);
+		tr.append(waveTD);
+		tbody.append(tr);
 	}
-	if ((document.querySelector(`[x='${xTarget}'][y='${yTarget}'][foe='false']`))) {
-		setPawn(document.querySelector(`[x='${xTarget}'][y='${yTarget}']`), true, "foe");
-		setPawn(entity, false, "foe");
-	}
-};
-export const tilesColor = (value, isEven) => {
-	let q = isEven ? ".even" : ".odd";
-	document.querySelectorAll(q).forEach(tile => tile.style.backgroundColor = value);
-};
-export const pawnsColor = (value, kind) => {
-		document.querySelectorAll(`.${kind}`).forEach(pawn => pawn.style.backgroundColor = value);
 };

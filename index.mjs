@@ -3,7 +3,8 @@ import * as constants from "./modules/constants/constants.mjs";
 import {initializePawns} from "./modules/game/board/initializePawns.mjs";
 import {initializeGame} from "./modules/game/initializeGame.mjs";
 import {movement} from "./modules/gameplay/player/movement.mjs";
-import {pawnsColor, tilesColor} from "./modules/constants/functions.mjs";
+import {pawnsColor, tilesColor} from "./modules/game/hud/functionColor.mjs";
+import {fetchLadder} from "./modules/constants/functions.mjs";
 
 const indexComponents = [
 	dom.description,
@@ -25,6 +26,7 @@ export const start = (isStart) => {
 		indexComponents.forEach(x => x.style.display = constants.display.flex);
 		dom.colorDivs.forEach(x => x.style.display = constants.display.none);
 		window.removeEventListener("keyup", movement);
+		fetchLadder();
 	}
 };
 
@@ -34,3 +36,4 @@ dom.evenColor.onchange = () => tilesColor(dom.evenColor.value, true);
 dom.oddColor.onchange = () => tilesColor(dom.oddColor.value, false);
 dom.foesColor.onchange = () => pawnsColor(dom.foesColor.value, "foe");
 dom.playerColor.onchange = () => pawnsColor(dom.playerColor.value, "player");
+window.onload = fetchLadder;

@@ -8,5 +8,6 @@ export const app = document.getElementById("app");
 export const play = document.getElementById("play");
 export const logo = document.getElementById("logo");
 export const ladder = document.getElementById("ladder");
+export const tbody = document.querySelector("tbody");
 export const description = document.getElementById("description");
 export const colorDivs = document.querySelectorAll("#colors>div");

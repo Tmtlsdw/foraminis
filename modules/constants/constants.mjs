@@ -15,3 +15,12 @@ export const display = {
 	block: "block",
 	flex: "flex"
 };
+export const user = {
+	id: "",
+	name: "",
+	email: "",
+	password: "",
+	erased: "",
+	wave: "",
+	rank: ""
+};

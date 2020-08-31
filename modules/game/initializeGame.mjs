@@ -1,9 +1,9 @@
 import {initializeBoard} from "./board/initializeBoard.mjs";
 import {initializeHUD} from "./hud/initializeHUD.mjs";
-import {app, evenColor, foesColor, oddColor, playerColor} from "../constants/dom.mjs";
+import {app, evenColor, oddColor} from "../constants/dom.mjs";
 import {movement} from "../gameplay/player/movement.mjs";
 import {initializeHUDData} from "./hud/initializeHUDData.mjs";
-import {tilesColor} from "../constants/functions.mjs";
+import {tilesColor} from "./hud/functionColor.mjs";
 
 export const initializeGame = () => {
 	const board = initializeBoard();

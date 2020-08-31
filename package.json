@@ -1,0 +1,31 @@
+{
+  "name": "foraminis",
+  "version": "1.0.0",
+  "description": "Strategy Game",
+  "main": "index.mjs",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./foraminis_api/server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tmtlsdw/foraminis.git"
+  },
+  "author": "Tmtlsdw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tmtlsdw/foraminis/issues"
+  },
+  "homepage": "https://github.com/Tmtlsdw/foraminis#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

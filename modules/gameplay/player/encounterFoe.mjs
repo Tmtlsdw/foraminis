@@ -1,5 +1,6 @@
-import {setPawn, chase, erasePawn} from "./constants/functions.mjs";
-import {data, thickness} from "./constants/constants.mjs";
+import {data, thickness} from "../../constants/constants.mjs";
+import {chase} from "../foes/chase.mjs";
+import {setPawn} from "../../game/board/miscellaneousPawns.mjs";
 
 
 export const encounterFoe = () => {

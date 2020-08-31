@@ -1,10 +1,9 @@
-import {dataChange} from "../../dataChange.mjs";
-import {encounterFoe} from "../../encounterFoe.mjs";
-import {playerChasing} from "../../playerChasing.mjs";
-import {gameDone} from "../../gameDone.mjs";
-import {pawnsColor, setPawn} from "../../constants/functions.mjs";
+import {dataChange} from "../../game/hud/dataChange.mjs";
+import {encounterFoe} from "./encounterFoe.mjs";
+import {playerChasing} from "../foes/playerChasing.mjs";
+import {gameDone} from "../../game/gameDone.mjs";
 import {thickness} from "../../constants/constants.mjs";
-import {foesColor, playerColor} from "../../constants/dom.mjs";
+import {setPawn} from "../../game/board/miscellaneousPawns.mjs";
 
 export const movement = (e) => {
 	const player = document.querySelector("[player='true']");

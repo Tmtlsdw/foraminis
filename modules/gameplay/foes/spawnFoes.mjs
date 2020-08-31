@@ -1,5 +1,5 @@
-import {setFoes} from "../../constants/functions.mjs";
 import {spawn} from "../../constants/constants.mjs";
+import {setFoes} from "../../game/board/miscellaneousPawns.mjs";
 
 export const spawnFoes = () => {
 	let foes = document.querySelectorAll("[player='false'][foe='false']");

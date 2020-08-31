@@ -1,5 +1,5 @@
 import {playerEncountered} from "./playerEncountered.mjs";
-import {chase} from "./constants/functions.mjs";
+import {chase} from "./chase.mjs";
 export const playerChasing = () => {
 	let foes = document.querySelectorAll("[foe='true']");
 	let player = document.querySelector("[player='true']");

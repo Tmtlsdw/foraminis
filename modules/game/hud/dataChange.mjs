@@ -1,7 +1,7 @@
-import {spawnFoes} from "./gameplay/foes/spawnFoes.mjs";
-import {data, move, spawn} from "./constants/constants.mjs";
-import {pawnsColor} from "./constants/functions.mjs";
-import {foesColor, playerColor} from "./constants/dom.mjs";
+import {spawnFoes} from "../../gameplay/foes/spawnFoes.mjs";
+import {data, move, spawn} from "../../constants/constants.mjs";
+import {foesColor, playerColor} from "../../constants/dom.mjs";
+import {pawnsColor} from "./functionColor.mjs";
 
 export const dataChange = () => {
 	if (data.move === 1 || data.alive === 0) {
