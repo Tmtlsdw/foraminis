@@ -1,30 +1,60 @@
-import {logo, tbody} from "./dom.mjs";
-import {data, user} from "./constants.mjs";
-import {start} from "../../index.mjs";
+import {register, signButton, signEmail, signIn, signName, signPassword, tbody} from "./dom.mjs";
+import {data, displayStyle, user} from "./constants.mjs";
+import {game} from "../../index.mjs";
 
-export const ladderRegistration = () => {
-	user.name = document.getElementById("nameGameOver").value;
-	user.password = document.getElementById("passwordGameOver").value;
-	user.email = document.getElementById("emailGameOver").value;
-	user.erased = data.erased;
-	user.wave = data.wave;
-	console.log(JSON.stringify(user));
-	fetch("http://localhost:3000/register", {
+export const post = (route, data) => {
+	fetch(`http://localhost:3000/${route}`, {
 		method: "post",
 		headers: {"Content-Type": "application/json"},
-		body: JSON.stringify(user)
+		body: JSON.stringify(data)
+	}).then(response => response.json());
+};
+export const display = (what, how) => {
+	if (!Array.isArray(what) && !NodeList.prototype.isPrototypeOf(what)) {
+		what.style.display = how;
+		return;
+	}
+	what.forEach(x => x.style.display = how);
+};
+export const registration = () => {
+	let userToRegister = {
+		name: signName.value,
+		password: signPassword.value,
+		email: signEmail.value,
+		erased: data.erased,
+		wave: data.wave
+	};
+	post("register", userToRegister)
+		.then(data => {
+			if (data) {
+				const {wave, erased, name, id} = data;
+				user.name = name;
+				user.erased = erased;
+				user.wave = wave;
+				user.id = id;
+				game(false);
+			}
+		});
+};
+export const login = () => {
+	let userToLog = {
+		password: signPassword.value,
+		email: signEmail.value
+	};
+	fetch("http://localhost:3000/login", {
+		method: "post",
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify(userToLog)
 	})
 		.then(response => response.json())
 		.then(data => {
 			if (data) {
-				const {wave, erased, email, name, id} = data;
-				console.log("alright");
+				const {wave, erased, name, id} = data;
 				user.name = name;
-				user.email = email;
 				user.erased = erased;
-				user.wave = wave,
-					user.id = id;
-				start(false);
+				user.wave = wave;
+				user.id = id;
+				game(false);
 			}
 		});
 };
@@ -35,9 +65,7 @@ export const fetchLadder = () => {
 };
 export const initializeLadder = (ladder) => {
 	if (ladder.length < 1) return;
-	tbody.innerHTML= "";
-	console.log(ladder)
-
+	tbody.innerHTML = "";
 	const rank = (i) => {
 		switch (i) {
 			case 0:
@@ -69,4 +97,26 @@ export const initializeLadder = (ladder) => {
 		tr.append(waveTD);
 		tbody.append(tr);
 	}
+};
+
+export const initializeSign = (how) => {
+	let nameLabelInput = document.querySelectorAll(".name");
+	let functionToCall;
+	if (how === "in") {
+		display(nameLabelInput, displayStyle.none);
+		signEmail.setAttribute("autofocus", "");
+		signButton.innerText = signIn.innerText;
+		functionToCall = () => login();
+	}
+	if (how === "up") {
+		display(nameLabelInput, displayStyle.block);
+		signName.setAttribute("autofocus", "");
+		signButton.innerText = register.innerText;
+		functionToCall = () => registration();
+	}
+	signPassword.addEventListener("keyup", (e) => {
+		if (e.key !== "Enter") return;
+		functionToCall();
+	});
+	signButton.onclick = functionToCall;
 };

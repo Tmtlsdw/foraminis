@@ -14,7 +14,7 @@ app.use(express.json());
 // noinspection JSCheckFunctionSignatures
 app.use(cors());
 
-app.get("/", (req, res) => res.json(database.users));
+app.get("/", (req, res) => res.json(database.users.sort((a, b) => b.erased - a.erased)));
 
 app.post("/register", (req, res) => {
 

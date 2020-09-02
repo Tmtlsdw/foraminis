@@ -10,7 +10,7 @@ export const data = {
 	wave: wave,
 	erased: erased
 };
-export const display = {
+export const displayStyle = {
 	none: "none",
 	block: "block",
 	flex: "flex"
@@ -18,9 +18,6 @@ export const display = {
 export const user = {
 	id: "",
 	name: "",
-	email: "",
-	password: "",
 	erased: "",
-	wave: "",
-	rank: ""
+	wave: ""
 };
