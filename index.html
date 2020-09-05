@@ -3,43 +3,80 @@
 <head>
     <meta charset="utf-8"/>
     <title>Foraminis</title>
-    <link rel="icon" href="./img/favicon.png" type="image/png"/>
+    <link rel="icon" href="lib/img/favicon.png" type="image/png"/>
     <link rel="stylesheet" type="text/css" href="./index.css"/>
 </head>
 <body>
-<div id="logo">
-    <img src="./img/logo_transparent.png" alt="Logo"/>
-</div>
-<div id="game">
+<header>
     <div id="colors">
         <div>
             <input type="color" name="even" id="even" value="#777777">
-            <label for="even">Even tiles</label>
+            <label for="even">Even</label>
         </div>
         <div>
             <input type="color" name="odd" id="odd" value="#FFFFFF">
-            <label for="odd">Odd tiles</label>
+            <label for="odd">Odd</label>
+        </div>
+        <div>
+            <input type="color" name="player" id="player" value="#FF0000">
+            <label for="player">Player</label>
+        </div>
+        <div>
+            <input type="color" name="foes" id="foes" value="#00BBBB">
+            <label for="foes">Foes</label>
         </div>
     </div>
-    <div id="gameBoard"></div>
-    <div id="gameData">
-        <div id="moves">Press any directional key to move tile by tile.</div>
-        <div id="wave">Pressing any directional key while pressing a shift key will make you move twice as far.</div>
-        <div id="alive">Run on top of the foes to keep going, don't let them run you over.</div>
-        <div id="erased">Good luck and enjoy !</div>
+    <div id="logo">
+        <img src="lib/img/logo_transparent.png" alt="Logo"/>
     </div>
-</div>
-<div id="gameOver">
-    <h1>You <span id="synonym">Synonyme</span> lost.</h1>
-    <button id="retry">Retry ?</button>
+    <div id="menu">
+        <a href="#" id="signIn">Sign in</a>
+        <a href="#" id="register">Register</a>
+        <p id="userNameDisplay">#</p>
+        <a href="#" id="signOut">Sign out</a>
+    </div>
+</header>
 
-    <div id="cardGO">
-        <h3>Your stats</h3>
-        <hr>
-        <div>Erased : <span id="erasedGO"></span></div>
-        <div>Wave : <span id="waveGO"></span></div>
+<main id="app">
+    <div id="description">
+        <div id="howToPlay">
+            <p><strong>Foraminis</strong> is a strategy game.</p>
+            <b>How it goes ?</b>
+            <p>You have a pawn, and you need to run over the adverse pawns.</p>
+            <p>Each movement bring them towards you, be cautious.</p>
+            <b>How do you play ?</b>
+            <p>You have to press any directional key to move in the chosen direction.</p>
+            <p>You can also press simultaneously the shift key to double the motion.</p>
+
+        </div>
+        <button id="play">Play</button>
     </div>
-</div>
+    <div id="ladder">
+        <h3>High Scores</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Erased</th>
+                <th>Wave</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="form">
+        <label class="name" for="name">Name</label><input type="text" maxlength="40" class="name" id="name"
+                                                          name="name" required>
+        <label class="email" for="email">Email</label><input type="email" maxlength="40" class="email" name="email"
+                                                             id="email" required>
+        <label class="password" for="password">Password</label><input type="password" maxlength="64" class="password"
+                                                                      name="password"
+                                                                      id="password" required>
+        <button id="sign"> </button>
+    </div>
+</main>
 <script type="module" src="./index.mjs"></script>
 </body>
 </html>

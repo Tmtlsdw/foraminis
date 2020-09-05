@@ -1,12 +1,27 @@
 @font-face {
     font-family: Orbitron;
-    src: url("./Orbitron/Orbitron-Regular.ttf")
+    src: url("lib/Orbitron/Orbitron-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Orbitron;
+    src: url("lib/Orbitron/Orbitron-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+/* Page */
+body, header, main, div {
+    display: flex;
+}
+
+input, button, img {
+    cursor: pointer;
 }
 
 body {
-    background: radial-gradient(circle at center bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .7), rgba(0, 0, 0, .5));
+    background: radial-gradient(circle at center bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .7), rgba(0, 0, 0, .5)) no-repeat;
     margin: auto;
-    display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Orbitron, sans-serif;
@@ -16,59 +31,8 @@ body {
     width: 100vw;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar, #app::-webkit-scrollbar {
     display: none;
-}
-
-#game {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100vh;
-    width: 100vw;
-}
-
-#board {
-    padding: 30px;
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.even {
-    background-color: rgba(10, 245, 160, .8);
-}
-
-.odd {
-    background-color: rgba(245, 10, 160, .9);
-}
-
-.tiles {
-    width: 40px;
-    height: 40px;
-    border-radius: 1rem;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    text-align: center;
-}
-
-[foe=true] {
-    background-image: url("./img/foe.png");
-}
-
-[player=true] {
-    background-image: url("./img/player.png");
-}
-
-[player=true], [foe=true] {
-    background-size: 90%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
 }
 
 a {
@@ -76,60 +40,212 @@ a {
     text-decoration: none;
 }
 
-#gameData {
+button {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, .1), rgba(255, 255, 255, .3), rgba(255, 255, 255, .5));
+    margin: 10px;
+    font-family: Orbitron, sans-serif;
+    font-size: 2rem;
+    border: 1px;
+    border-radius: 50px;
+    height: 4rem;
+    color: black;
+    transition: .1s;
+}
+
+button:hover {
+    background: radial-gradient(circle at center, rgba(0, 0, 0, .1), rgba(0, 0, 0, .3), rgba(0, 0, 0, .5));
+    color: white;
+    transition: .1s;
+}
+
+
+/* Header */
+header {
+    width: 100vw;
+    place-content: center center;
+}
+
+header > div {
+    width: calc(100vw / 3);
+}
+
+/* Color */
+#colors {
+    place-items: center flex-start;
+}
+
+#colors > div {
+    display: none;
     padding: 5px;
-    display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
+}
+
+/* Logo */
+#logo {
+    display: block;
     text-align: center;
+}
+
+#logo > img {
+    height: auto;
+    width: 100px;
+    transition: .5s;
+
+}
+
+#logo > img:hover {
+    width: 150px;
+    transition: .5s;
+}
+
+/* Menu */
+#menu {
+    place-items: center flex-end;
+    place-content: center flex-end;
+}
+
+a {
+    padding: 5px;
+    transition: .25s;
+}
+
+#userNameDisplay, #signOut {
+    display: none;
+}
+#userNameDisplay:hover {
+font-size: xx-large;
+}
+#userNameDisplay{
+    font-size: x-large;
+    cursor: default;
+}
+#signOut{
+    font-size: smaller;
+}
+
+a:hover {
+    color: black;
+    transition: .25s;
+}
+
+/* App */
+#app {
+    flex-direction: column;
+    overflow: auto;
+    height: 100%;
+    place-content: center space-around;
+}
+
+/* Description */
+#description, #form {
+    flex-direction: column;
+    place-content: center;
+    text-align: center;
+    place-self: center;
+}
+
+#howToPlay {
+    display: block;
+}
+
+/* Sign */
+#form {
+    display: none;
+    width: 30vw;
+    height: 100%;
+}
+
+#form > input {
+    font-family: Orbitron, sans-serif;
+    font-size: large;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    border-radius: 50px;
+}
+
+/* Play */
+
+/* Ladder */
+#ladder {
+    flex-direction: column;
+    text-align: center;
+}
+
+tbody > tr:first-child {
     font-size: 2rem;
 }
 
+tr:nth-child(2) {
+    font-size: 1.7rem;
+}
+
+tr:nth-child(3) {
+    font-size: 1.3rem;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+/* Form */
+
+/* Game */
+/* HUD */
+.hud {
+    flex-direction: column;
+    place-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Pawns */
+[foe=true], [player=true] {
+    place-content: center;
+}
+
+.foe, .player {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    border: 1px solid black;
+    place-self: center;
+}
+
+/* Board */
+#board {
+    padding: 30px;
+    flex-direction: column-reverse;
+}
+
+.tiles {
+    width: 40px;
+    height: 40px;
+    border-radius: 1rem;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.row {
+    justify-content: center;
+}
+
+/* Game Over */
 #gameOver {
     text-align: center;
-    display: none;
     flex-direction: column;
     justify-content: center;
     height: 100vh;
 }
 
-#cardGO {
-    border: 10px dot-dot-dash;
-    border-radius: 50px;
-}
 
 hr {
-    border: none;
-    border-top: 5px double;
+    border: 0;
+    border-top: 5px double white;
     overflow: visible;
     text-align: center;
     height: 10px;
+    width: 100%;
 }
 
-button {
-    background: radial-gradient(circle at center, rgba(255, 255, 255, .1), rgba(255, 255, 255, .2), rgba(255, 255, 255, .3));
-    margin: 10px;
-    font-family: Orbitron, sans-serif;
-    font-size: 2rem;
-    border: 0;
-    border-radius: 50px;
-    height: 4rem;
-    color: black;
-}
 
-#colors {
-    display: flex;
-    justify-content: center;
-}
-
-#colors div {
-    padding: 5px;
-}
-
-input, button {
-    cursor: pointer;
-}
-div img{
-    height:auto;
-    width: 100px;
-}

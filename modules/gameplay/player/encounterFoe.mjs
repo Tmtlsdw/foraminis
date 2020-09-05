@@ -1,15 +1,16 @@
-import {aliveDiv, erasedDiv, unsetFoe, currentData, thickness} from "./constants.mjs";
-import {chase} from "./playerChasing.mjs";
+import {data, thickness} from "../../constants/constants.mjs";
+import {chase} from "../foes/chase.mjs";
+import {setPawn} from "../../game/board/miscellaneousPawns.mjs";
 
 
 export const encounterFoe = () => {
 	const player = document.querySelector("[player='true']");
 	if (player.getAttribute("foe") === "true") {
-		unsetFoe(player);
-		currentData.alive -= 1;
-		currentData.erased += 1;
-		aliveDiv.innerText = `Alive : ${currentData.alive}`;
-		erasedDiv.innerText = `Erased : ${currentData.erased}`;
+		setPawn(player, false, "foe");
+		data.alive -= 1;
+		data.erased += 1;
+		document.getElementById("alive").innerText = `Alive : ${data.alive}`;
+		document.getElementById("erased").innerText = `Erased : ${data.erased}`;
 		const x = Number(player.getAttribute("x"));
 		const y = Number(player.getAttribute("y"));
 		let conditionsPositions = [

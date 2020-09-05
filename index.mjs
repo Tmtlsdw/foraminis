@@ -1,37 +1,52 @@
-import {initBoard} from "./modules/initBoard.mjs";
-import {initPlayerAndFoes} from "./modules/initPlayerAndFoes.mjs";
-import {movement} from "./modules/movement.mjs";
-import {initDataDisplay} from "./modules/initDataDisplay.mjs";
-import {tilesColor} from "./modules/tilesColor.mjs";
-import {gameOver, retry, game, wave, currentData, move, alive, erased} from "./modules/constants.mjs";
+import * as dom from "./modules/constants/dom.mjs";
+import * as constants from "./modules/constants/constants.mjs";
+import {initializePawns} from "./modules/game/board/initializePawns.mjs";
+import {initializeGame} from "./modules/game/initializeGame.mjs";
+import {movement} from "./modules/gameplay/player/movement.mjs";
+import {pawnsColor, tilesColor} from "./modules/game/hud/functionColor.mjs";
+import {display, fetchLadder, initializeData, initializeSign, logout} from "./modules/constants/functions.mjs";
 
-let evenColor = document.getElementById("even");
-let oddColor = document.getElementById("odd");
+const indexComponents = [
+	dom.description,
+	dom.ladder
+];
+const {flex, none, block} = constants.displayStyle;
 
-const start = () => {
-	initBoard();
-	initPlayerAndFoes();
-	tilesColor(evenColor.value, true)
-	tilesColor(oddColor.value, false)
+
+export const game = (toStart) => {
+	display(dom.form, none);
+	let game = document.getElementById("game");
+	let gameOver = document.getElementById("gameOver");
+	if (!!game) game.remove();
+	if (!!gameOver) gameOver.remove();
+	if (toStart) {
+		display(indexComponents, none);
+		display(dom.colorDivs, block);
+		initializeGame();
+		initializePawns();
+		return;
+	}
+	initializeData();
+	indexComponents.forEach(x => x.style.display = flex);
+	dom.colorDivs.forEach(x => x.style.display = none);
+	window.removeEventListener("keyup", movement);
+	fetchLadder();
 };
-
-const playAgain = () => {
-	currentData.move = move;
-	currentData.alive = alive;
-	currentData.wave = wave;
-	currentData.erased = erased;
-	game.style.display = "flex";
-	gameOver.style.display = "none";
-	document.getElementById("gameBoard").innerHTML = "";
-	start();
-
-	initDataDisplay();
-	window.addEventListener("keyup", movement);
+const showForm = (how) => {
+	let game = document.getElementById("game");
+	if (!!game) game.remove();
+	display(indexComponents, none);
+	display(dom.form, flex);
+	initializeSign(how);
 };
-
-window.onload = start;
-evenColor.addEventListener("change", () => { tilesColor(evenColor.value, true);});
-oddColor.addEventListener("change", () => { tilesColor(oddColor.value, false);});
-window.addEventListener("keyup", initDataDisplay, {once: true});
-retry.addEventListener("click", playAgain);
-window.addEventListener("keyup", movement);
+dom.play.onclick = () => game(true);
+dom.logo.onclick = () => game(false);
+dom.evenColor.onchange = () => tilesColor(dom.evenColor.value, true);
+dom.oddColor.onchange = () => tilesColor(dom.oddColor.value, false);
+dom.foesColor.onchange = () => pawnsColor(dom.foesColor.value, "foe");
+dom.playerColor.onchange = () => pawnsColor(dom.playerColor.value, "player");
+dom.register.onclick = () => showForm("up");
+dom.signIn.onclick = () => showForm("in");
+dom.signButton.onclick = () => display(dom.form, none);
+dom.signOut.onclick = () => logout();
+window.onload = fetchLadder;
