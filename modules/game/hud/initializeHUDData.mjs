@@ -1,4 +1,4 @@
-import {alive, data, erased, move, spawn, wave} from "../../constants/constants.mjs";
+import {data, erased, move, spawn, wave} from "../../constants/constants.mjs";
 
 export const initializeHUDData = () => {
 	data.move = move;

@@ -15,4 +15,6 @@ export const logo = document.getElementById("logo");
 export const ladder = document.getElementById("ladder");
 export const tbody = document.querySelector("tbody");
 export const description = document.getElementById("description");
+export const userNameDisplay = document.getElementById("userNameDisplay");
+export const signOut = document.getElementById("signOut");
 export const colorDivs = document.querySelectorAll("#colors>div");

@@ -16,6 +16,7 @@ export const displayStyle = {
 	flex: "flex"
 };
 export const user = {
+	signedIn: false,
 	id: "",
 	name: "",
 	erased: "",

@@ -32,6 +32,8 @@
     <div id="menu">
         <a href="#" id="signIn">Sign in</a>
         <a href="#" id="register">Register</a>
+        <p id="userNameDisplay">#</p>
+        <a href="#" id="signOut">Sign out</a>
     </div>
 </header>
 
@@ -65,10 +67,13 @@
         </table>
     </div>
     <div id="form">
-        <label class="name" for="name">Name</label><input type="text" class="name" id="name" name="name">
-        <label class="email" for="email">Email</label><input type="email" class="email" name="email" id="email">
-        <label class="password" for="password">Password</label><input type="password" class="password" name="password"
-                                                                      id="password">
+        <label class="name" for="name">Name</label><input type="text" maxlength="40" class="name" id="name"
+                                                          name="name" required>
+        <label class="email" for="email">Email</label><input type="email" maxlength="40" class="email" name="email"
+                                                             id="email" required>
+        <label class="password" for="password">Password</label><input type="password" maxlength="64" class="password"
+                                                                      name="password"
+                                                                      id="password" required>
         <button id="sign"> </button>
     </div>
 </main>

@@ -4,15 +4,11 @@ import {initializePawns} from "./modules/game/board/initializePawns.mjs";
 import {initializeGame} from "./modules/game/initializeGame.mjs";
 import {movement} from "./modules/gameplay/player/movement.mjs";
 import {pawnsColor, tilesColor} from "./modules/game/hud/functionColor.mjs";
-import {display, fetchLadder, initializeSign} from "./modules/constants/functions.mjs";
+import {display, fetchLadder, initializeData, initializeSign, logout} from "./modules/constants/functions.mjs";
 
 const indexComponents = [
 	dom.description,
 	dom.ladder
-];
-const signComponents = [
-	dom.register,
-	dom.signIn
 ];
 const {flex, none, block} = constants.displayStyle;
 
@@ -30,6 +26,7 @@ export const game = (toStart) => {
 		initializePawns();
 		return;
 	}
+	initializeData();
 	indexComponents.forEach(x => x.style.display = flex);
 	dom.colorDivs.forEach(x => x.style.display = none);
 	window.removeEventListener("keyup", movement);
@@ -51,6 +48,5 @@ dom.playerColor.onchange = () => pawnsColor(dom.playerColor.value, "player");
 dom.register.onclick = () => showForm("up");
 dom.signIn.onclick = () => showForm("in");
 dom.signButton.onclick = () => display(dom.form, none);
+dom.signOut.onclick = () => logout();
 window.onload = fetchLadder;
-
-window.onclick = () => console.log(constants.user)

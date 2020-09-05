@@ -7,6 +7,10 @@ import {setPawn} from "../../game/board/miscellaneousPawns.mjs";
 
 export const movement = (e) => {
 	const player = document.querySelector("[player='true']");
+	if(player === null) {
+		window.removeEventListener("keyup", movement);
+		return;
+	}
 	const x = Number(player.getAttribute("x"));
 	const y = Number(player.getAttribute("y"));
 	const breadth = e.shiftKey ? 2 : 1;
