@@ -10,6 +10,7 @@
     font-weight: bold;
 }
 
+
 /* Page */
 body, header, main, div {
     display: flex;
@@ -111,14 +112,17 @@ a {
 #userNameDisplay, #signOut {
     display: none;
 }
+
 #userNameDisplay:hover {
-font-size: xx-large;
+    font-size: xx-large;
 }
-#userNameDisplay{
+
+#userNameDisplay {
     font-size: x-large;
     cursor: default;
 }
-#signOut{
+
+#signOut {
     font-size: smaller;
 }
 
@@ -132,7 +136,7 @@ a:hover {
     flex-direction: column;
     overflow: auto;
     height: 100%;
-    place-content: center space-around;
+    place-content: center;
 }
 
 /* Description */
@@ -188,9 +192,12 @@ table {
     width: 100%;
 }
 
-/* Form */
-
 /* Game */
+#tactileButton {
+    width: 50%;
+    place-self: center;
+}
+
 /* HUD */
 .hud {
     flex-direction: column;

@@ -9,6 +9,7 @@ export const signButton = document.getElementById("sign");
 export const signName = document.getElementById("name");
 export const signPassword = document.getElementById("password");
 export const signEmail = document.getElementById("email");
+export const body = document.querySelector("body");
 export const app = document.getElementById("app");
 export const play = document.getElementById("play");
 export const logo = document.getElementById("logo");

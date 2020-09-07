@@ -1,3 +1,6 @@
+import {eventListenersActivation} from "../constants/functions.mjs";
+import {movementTouchEnd} from "../tactile/player/movementTouchEnd.mjs";
+import {movementTouchStart} from "../tactile/player/movementTouchStart.mjs";
 import {initializeBoard} from "./board/initializeBoard.mjs";
 import {initializeHUD} from "./hud/initializeHUD.mjs";
 import {app, evenColor, oddColor} from "../constants/dom.mjs";
@@ -15,9 +18,12 @@ export const initializeGame = () => {
 	game.append(hud1);
 	game.append(board);
 	game.append(hud2);
+
 	app.append(game);
 	tilesColor(evenColor.value, true);
 	tilesColor(oddColor.value, false);
 	initializeHUDData();
-	window.addEventListener("keyup", movement);
+
+	eventListenersActivation(true)
+
 };

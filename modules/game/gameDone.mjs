@@ -1,11 +1,10 @@
+import {game} from "../../index.mjs";
 import {data, displayStyle, user} from "../constants/constants.mjs";
 import {app, form} from "../constants/dom.mjs";
-import {movement} from "../gameplay/player/movement.mjs";
-import {game} from "../../index.mjs";
-import {display, initializeSign, send} from "../constants/functions.mjs";
+import {display, eventListenersActivation, initializeSign, send} from "../constants/functions.mjs";
 
 export const gameDone = () => {
-	window.removeEventListener("keyup", movement);
+	eventListenersActivation(false);
 	document.getElementById("game").remove();
 	const gameOver = document.createElement("div");
 	gameOver.setAttribute("id", "gameOver");
