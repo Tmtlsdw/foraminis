@@ -36,7 +36,7 @@ export const game = (toStart) => {
 	initializeData();
 	indexComponents.forEach(x => x.style.display = flex);
 	dom.colorDivs.forEach(x => x.style.display = none);
-	eventListenersActivation(true);
+	eventListenersActivation(false);
 	fetchLadder();
 };
 const showForm = (how) => {
