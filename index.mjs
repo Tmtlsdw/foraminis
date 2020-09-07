@@ -1,10 +1,16 @@
-import * as dom from "./modules/constants/dom.mjs";
 import * as constants from "./modules/constants/constants.mjs";
+import * as dom from "./modules/constants/dom.mjs";
+import {
+	display,
+	eventListenersActivation,
+	fetchLadder,
+	initializeData,
+	initializeSign,
+	logout
+} from "./modules/constants/functions.mjs";
 import {initializePawns} from "./modules/game/board/initializePawns.mjs";
-import {initializeGame} from "./modules/game/initializeGame.mjs";
-import {movement} from "./modules/gameplay/player/movement.mjs";
 import {pawnsColor, tilesColor} from "./modules/game/hud/functionColor.mjs";
-import {display, fetchLadder, initializeData, initializeSign, logout} from "./modules/constants/functions.mjs";
+import {initializeGame} from "./modules/game/initializeGame.mjs";
 
 const indexComponents = [
 	dom.description,
@@ -12,13 +18,14 @@ const indexComponents = [
 ];
 const {flex, none, block} = constants.displayStyle;
 
-
 export const game = (toStart) => {
 	display(dom.form, none);
 	let game = document.getElementById("game");
 	let gameOver = document.getElementById("gameOver");
 	if (!!game) game.remove();
 	if (!!gameOver) gameOver.remove();
+
+
 	if (toStart) {
 		display(indexComponents, none);
 		display(dom.colorDivs, block);
@@ -29,12 +36,13 @@ export const game = (toStart) => {
 	initializeData();
 	indexComponents.forEach(x => x.style.display = flex);
 	dom.colorDivs.forEach(x => x.style.display = none);
-	window.removeEventListener("keyup", movement);
+	eventListenersActivation(true);
 	fetchLadder();
 };
 const showForm = (how) => {
 	let game = document.getElementById("game");
 	if (!!game) game.remove();
+
 	display(indexComponents, none);
 	display(dom.form, flex);
 	initializeSign(how);
@@ -50,3 +58,4 @@ dom.signIn.onclick = () => showForm("in");
 dom.signButton.onclick = () => display(dom.form, none);
 dom.signOut.onclick = () => logout();
 window.onload = fetchLadder;
+

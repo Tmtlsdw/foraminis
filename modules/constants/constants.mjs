@@ -22,3 +22,18 @@ export const user = {
 	erased: "",
 	wave: ""
 };
+export const bgDeactivated = "radial-gradient(circle at center bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .7), rgba(0," +
+	" 0, 0," +
+	" .5)) no-repeat";
+export const bgActivated = "black no-repeat";
+
+export const touchEvent = {
+	key: "",
+	shiftKey: false,
+	startX: 0,
+	startY: 0,
+	deltaX: 0,
+	deltaY: 0,
+	clicked: false
+};
+

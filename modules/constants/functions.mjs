@@ -1,4 +1,10 @@
+import {game} from "../../index.mjs";
+import {movement} from "../gameplay/player/movement.mjs";
+import {movementTouchEnd} from "../tactile/player/movementTouchEnd.mjs";
+import {movementTouchStart} from "../tactile/player/movementTouchStart.mjs";
+import {alive, data, displayStyle, erased, move, user, wave} from "./constants.mjs";
 import {
+	app,
 	register,
 	signButton,
 	signEmail,
@@ -9,8 +15,6 @@ import {
 	tbody,
 	userNameDisplay
 } from "./dom.mjs";
-import {alive, data, displayStyle, erased, move, user, wave} from "./constants.mjs";
-import {game} from "../../index.mjs";
 
 export const logout = () => {
 	user.signedIn = false;
@@ -35,7 +39,7 @@ export const fetchLadder = () => {
 		.then(response => response.json())
 		.then(initializeLadder);
 };
-export const send = (route, data , method) => {
+export const send = (route, data, method) => {
 	fetch(`https://infinite-thicket-69660.herokuapp.com/${route}`, {
 		method: method,
 		headers: {"Content-Type": "application/json"},
@@ -173,4 +177,16 @@ export const initializeSign = (how) => {
 
 export const initializeData = () => {
 	Object.assign(data, {move, erased, wave, alive});
+};
+
+export const eventListenersActivation = (toActivate) => {
+	if (toActivate) {
+		window.addEventListener("keyup", movement);
+		app.addEventListener("touchstart", movementTouchStart);
+		app.addEventListener("touchend", movementTouchEnd);
+	} else {
+		window.removeEventListener("keyup", movement);
+		app.removeEventListener("touchstart", movementTouchStart);
+		app.removeEventListener("touchend", movementTouchEnd);
+	}
 };
